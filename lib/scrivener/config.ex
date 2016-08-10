@@ -5,11 +5,12 @@ defmodule Scrivener.Config do
       %Scrivener.Config{
         page_number: 2,
         page_size: 5,
-        module: MyApp.Repo
+        module: MyApp.Repo,
+        opts: []
       }
   """
 
-  defstruct [:module, :page_number, :page_size]
+  defstruct [:module, :page_number, :page_size, :opts]
 
   @type t :: %__MODULE__{}
 
@@ -22,11 +23,13 @@ defmodule Scrivener.Config do
   def new(module, defaults, options) do
     options = normalize_options(options)
     page_number = options["page"] |> to_int(1)
+    opts = options["opts"] || []
 
     %Scrivener.Config{
       module: module,
       page_number: page_number,
-      page_size: page_size(defaults, options)
+      page_size: page_size(defaults, options),
+      opts: opts
     }
   end
 

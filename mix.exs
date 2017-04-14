@@ -6,9 +6,9 @@ defmodule Scrivener.Mixfile do
       app: :scrivener,
       version: "2.1.1",
       elixir: "~> 1.2",
-      package: package,
+      package: package(),
       description: "Pagination for the Elixir ecosystem",
-      deps: deps,
+      deps: deps(),
       docs: [
         main: "readme",
         extras: [
